@@ -32,12 +32,12 @@ SELECT
 	  ,SYSTEM_USER 'Batch_User', CURRENT_TIMESTAMP 'Batch_DateTime'
 
 -- Bring in other tables/columns that are relevant to the query/project
-FROM [AdventureWorks2019].[Purchasing].[PurchaseOrderHeader] POH 
-       INNER JOIN [Purchasing].[PurchaseOrderDetail] POD ON POD.PurchaseOrderDetailID = POH.PurchaseOrderID
-       INNER JOIN [Production].[Product] PP ON PP.ProductID = POD.ProductID
-       LEFT JOIN [Production].[ProductSubcategory] PSC ON PSC.ProductSubcategoryID = PP.ProductSubcategoryID
-       INNER JOIN [Purchasing].[Vendor] PV ON PV.BusinessEntityID = POH.VendorID
-       INNER JOIN [Person].[BusinessEntityAddress] PBA ON PBA.BusinessEntityID = POH.EmployeeID
-       INNER JOIN [Person].[Address] PA ON PA.[AddressID] = PBA.[AddressID]
-       INNER JOIN [Person].[StateProvince] SP ON SP.[StateProvinceID] = PA.[StateProvinceID]
-       INNER JOIN [Person].[CountryRegion] CR ON CR.[CountryRegionCode] = SP.[CountryRegionCode]
+FROM   [Purchasing].[PurchaseOrderHeader] POH WITH (NOLOCK) 
+       INNER JOIN [Purchasing].[PurchaseOrderDetail] POD WITH (NOLOCK) ON POD.PurchaseOrderDetailID = POH.PurchaseOrderID
+       INNER JOIN [Production].[Product] PP WITH (NOLOCK) ON PP.ProductID = POD.ProductID
+       LEFT JOIN [Production].[ProductSubcategory] PSC WITH (NOLOCK) ON PSC.ProductSubcategoryID = PP.ProductSubcategoryID
+       INNER JOIN [Purchasing].[Vendor] PV WITH (NOLOCK) ON PV.BusinessEntityID = POH.VendorID
+       INNER JOIN [Person].[BusinessEntityAddress] PBA WITH (NOLOCK) ON PBA.BusinessEntityID = POH.EmployeeID
+       INNER JOIN [Person].[Address] PA WITH (NOLOCK) ON PA.[AddressID] = PBA.[AddressID]
+       INNER JOIN [Person].[StateProvince] SP WITH (NOLOCK) ON SP.[StateProvinceID] = PA.[StateProvinceID]
+       INNER JOIN [Person].[CountryRegion] CR WITH (NOLOCK) ON CR.[CountryRegionCode] = SP.[CountryRegionCode]
